@@ -7,11 +7,11 @@ Logger which takes care of truncating Bearer tokens, safe JSON stringification, 
 Install the library.
 
 ```bash
-yarn add @atsquad/logger
+yarn add @alphatango/logger
 ```
 
 ```typescript
-import Logger from '@atsquad/logger';
+import Logger from '@alphatango/logger';
 
 const defaultConfiguration = { logFunction: console.log, jsonSpace: 2 };
 
