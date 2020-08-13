@@ -1,6 +1,6 @@
 {
   "name": "@alphatango/logger",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Logger which takes care of truncating Bearer tokens, safe JSON stringification, and converts errors to json objects.",
   "main": "lib/logger.js",
   "private": false,
