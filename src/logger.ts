@@ -104,7 +104,7 @@ export interface SuggestedLogObject {
   /**
    * Log Level
    */
-  level?: 'TRACE' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'FATAL';
+  level?: 'TRACE' | 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'CRITICAL' | 'FATAL';
 
   /**
    * Any additional data
