@@ -25,7 +25,7 @@ export default class Logger {
    * Create a new invocation which will end up setting the additional invocation metadata for the request, which will be used when logging.
    * @param staticData Any static data that are assigned to every log message. Typical might be an environment parameter or version number.
    */
-  startInvocation(staticData: any): void {
+  startInvocation(staticData?: any): void {
     this.staticData = staticData;
     this.invocationId = uuid.v4();
   }
