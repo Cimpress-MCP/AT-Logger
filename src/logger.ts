@@ -3,7 +3,6 @@
 import * as uuid from 'uuid';
 import stringify from 'fast-safe-stringify';
 import isError from 'is-error';
-import SerialisedError from 'serialised-error';
 
 export default class Logger {
   public invocationId: string;
@@ -65,7 +64,7 @@ export default class Logger {
       );
     };
 
-    const replacer = (key, value) => (isError(value) ? SerialisedError(value) : value);
+    const replacer = (key, value) => (isError(value) ? Logger.errorToObject(value) : value);
     let stringifiedPayload = truncateToken(stringify(payload, replacer, this.jsonSpace));
     // https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch_limits_cwl.html 256KB => 32768 characters
     if (stringifiedPayload.length >= 32768) {
@@ -80,6 +79,15 @@ export default class Logger {
       stringifiedPayload = stringify(replacementPayload, replacer, this.jsonSpace);
     }
     this.logFunction(stringifiedPayload);
+  }
+
+  private static errorToObject(error: Error): Record<string, string> {
+    const obj: Record<string, string> = {};
+    obj.name = error.name;
+    Object.getOwnPropertyNames(error).forEach((res) => {
+      obj[res] = error[res];
+    });
+    return obj;
   }
 }
 

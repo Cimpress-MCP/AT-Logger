@@ -112,7 +112,7 @@ describe('log()', () => {
       expectedMessage: {
         title: 'Payload too large',
         fields: ['invocationId', 'message'],
-        truncatedPayload: `{\n  "invocationId": "{{invocationId}}",\n  "message": {\n    "title": "Request Error",\n    "exception": {\n      "message": "${[...Array(9849)].map(() => 1).join('')}`
+        truncatedPayload: `{\n  "invocationId": "{{invocationId}}",\n  "message": {\n    "title": "Request Error",\n    "exception": {\n      "message": "${[...Array(9858)].map(() => 1).join('')}`
       },
       resetInvocationId: true
     },
@@ -126,8 +126,8 @@ describe('log()', () => {
         messageType: 'Request Error',
         exception: {
           name: "Error",
-          message: expectedErrorMessage,
-          stack: expectedException.stack
+          stack: expectedException.stack,
+          message: expectedErrorMessage
         }
       }
     },
@@ -178,7 +178,6 @@ describe('log()', () => {
       expectedLogString = expectedLogString.replace(/{{invocationId}}/, logger.invocationId);
 
       logger.log(testCase.message);
-
       expect(logFunc).toHaveBeenCalledWith(expectedLogString);
     });
   });
